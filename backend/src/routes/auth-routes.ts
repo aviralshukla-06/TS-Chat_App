@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 import bcrypt from "bcrypt"
 import { pgClient } from "../db";
 dotenv.config()
-const secret = process.env.JWT_SECRETS
+const secret = process.env.JWT_SECRET
 const app = express();
 app.use(express.json())
 
@@ -29,7 +29,7 @@ app.post("/signup", async (req, res) => {
     const insertCheckValue = await pgClient.query(existingUserCheck, [req.body.email])
 
     if (insertCheckValue.rows.length > 0) {
-        res.status(500).send(
+        res.status(400).send(
             "User already exists. Try another email"
         )
     }
@@ -59,17 +59,61 @@ app.post("/signup", async (req, res) => {
 });
 
 
-app.post("/signin", (req, res) => {
-    res.send({
-        message: "User logged-in successfully"
+app.post("/signin", async (req, res) => {
+
+    const { email, password } = req.body;
+    const signingUser = `SELECT "id" , "password" FROM "Users" WHERE "email"=$1;`
+    const insertSignin = await pgClient.query(signingUser, [req.body.email]);
+
+    if (insertSignin.rows.length === 0) {
+        res.status(403).json({
+            message: "User doesnot exist"
+        });
+        return;
+    }
+
+    const userRow = insertSignin.rows[0];
+    const userPass = userRow.password;
+    const userId = userRow.id;
+
+    const passMatch = await bcrypt.compare(password, userPass);
+
+    if (!passMatch) {
+        res.status(403).json({
+            message: "Incorrect password"
+        });
+        return;
+    }
+    console.log("executed");
+
+    if (!secret) {
+        throw new Error("JWT_SECRET is not defined in environment variables");
+    }
+
+    let token: string;
+
+    if (passMatch) {
+        token = jwt.sign({
+            id: userId
+        }, secret)
+    } else {
+        res.status(403).json({
+            message: "Incorrect details"
+        });
+        return
+    }
+
+
+    res.status(200).send({
+        message: "User logged-in successfully",
+        token
     })
 });
 
 
-app.get("/signout", (req, res) => {
+app.post("/signout", (req, res) => {
 
-
-    res.send(
+    res.status(200).send(
         "User logged-out successfully"
     )
 });
