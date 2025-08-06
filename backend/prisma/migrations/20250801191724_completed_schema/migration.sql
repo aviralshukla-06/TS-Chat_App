@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "public"."Messages" ADD COLUMN     "timeStamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;

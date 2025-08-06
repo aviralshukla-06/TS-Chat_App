@@ -5,8 +5,7 @@ import jwt from "jsonwebtoken"
 dotenv.config()
 const secret = process.env.JWT_SECRET
 
-export const userMiddleware = (req: AuthRequest, res
-    : Response, next: NextFunction) => {
+export const userMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
 
     const authHeader = req.headers.authorization;
 

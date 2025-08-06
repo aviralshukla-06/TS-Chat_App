@@ -19,4 +19,23 @@ model Users {
   full_name    String      @map("fullName")
   password    String  
   profile_pic  String       @map("profilePic")
+  creation_time DateTime    @default(now())
+
+
+//Referances
+sentMessages    Messages[]    @relation("SenderRelation")
+receivedMessages    Messages[]    @relation("ReceiverRelation")
+
+}
+
+model Messages{
+  msg_id   Int    @map("messageId") @id @default(autoincrement())
+  sender_id Int   @map("senderId")
+  receiver_id Int   @map("receiverId")
+  text  String  @map("text")
+  image String  @map("image")
+  creation_time DateTime    @default(now()) @map("timeStamp")
+
+  sender  Users   @relation("SenderRelation", fields:[sender_id], references:[id])
+  receiver  Users   @relation("ReceiverRelation", fields:[receiver_id], references:[id])
 }
