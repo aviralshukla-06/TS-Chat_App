@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router-dom"
 // import ProfilePage from "./pages/ProfilePage"
 import { CardHeader } from "./components/CardHeader"
 import { UserIcon } from "./custom-icons/UserIcon"
+import { InputBox } from "./components/InputBox"
+import { Card } from "./components/Card"
 
 
 const App = () => {
@@ -14,12 +16,13 @@ const App = () => {
     <div>
       {/* <NavBar/> */}
       {/* <BrowserRouter> */}
+      <CardHeader
+        profileIcon={<UserIcon size="lg" />}
+        headingText={"Welcome Aviral"}
+        generalText={"Create! The world is yours.."}
+      />
       <Routes>
-        <Route path="/" element={<CardHeader
-          profileIcon={<UserIcon size="lg" />}
-          headingText={"Create Account"}
-          generalText={"Welcome"}
-        />} />
+        <Route path="/" element={<Card />} />
         {/* <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SigninPage />} />
           <Route path="/settings" element={<SettingPage />} />
