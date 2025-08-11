@@ -16,13 +16,13 @@ export const InputBox = ({ bgColor, icon, placeholder, iconPosition = "left" }: 
 
     return (
         <div >
-            <div className="flex items-center justify-center bg-inherit">
+            <div className="flex items-center border border-red-950 justify-center bg-inherit">
                 {iconPosition === "left" && (
                     <span className="border border-black rounded-full flex justify-center items-center z-10  h-12 w-12 bg-white">{icon}</span>
                 )}
 
                 <input
-                    className={`${colorClass} ${iconPosition === "left" ? "-ml-2 pl-4 rounded-r-3xl" : " rounded-l-3xl -mr-2 pr-2 pl-4"} z-0 h-9 flex justify-center `}
+                    className={`${colorClass} ${iconPosition === "left" ? "-ml-3 rounded-r-3xl" : " rounded-l-3xl -mr-2 pr-2"} z-0 h-10 text-md flex text-center p-3 justify-center `}
                     placeholder={placeholder}
                 />
 

@@ -9,6 +9,8 @@ import { CardHeader } from "./components/CardHeader"
 import { UserIcon } from "./custom-icons/UserIcon"
 import { InputBox } from "./components/InputBox"
 import { Card } from "./components/Card"
+import { SignupPage } from "./pages/SignupPage"
+import { SigninPage } from "./pages/SigninPage"
 
 
 const App = () => {
@@ -16,16 +18,12 @@ const App = () => {
     <div>
       {/* <NavBar/> */}
       {/* <BrowserRouter> */}
-      <CardHeader
-        profileIcon={<UserIcon size="lg" />}
-        headingText={"Welcome Aviral"}
-        generalText={"Create! The world is yours.."}
-      />
+
       <Routes>
-        <Route path="/" element={<Card />} />
-        {/* <Route path="/signup" element={<SignupPage />} />
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/settings" element={<SettingPage />} />
+        {/* <Route path="/" element={<SigninPage />} /> */}
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/signin" element={<SigninPage />} />
+        {/* <Route path="/settings" element={<SettingPage />} />
           <Route path="/profile" element={<ProfilePage />} /> */}
       </Routes>
       {/* </BrowserRouter> */}

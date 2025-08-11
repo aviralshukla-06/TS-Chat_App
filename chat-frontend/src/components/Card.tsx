@@ -1,31 +1,21 @@
-import { PasswordIcon } from "../custom-icons/PasswordIcon"
 import { UserIcon } from "../custom-icons/UserIcon"
-// import { CardHeader } from "./CardHeader"
-import { InputBox } from "./InputBox"
 
 export const Card = () => {
     return (
-        <div>
-            {/* <CardHeader /> */}
-            <div className="mb-2">
-                <InputBox
-                    bgColor="custom"
-                    icon={<UserIcon size="md" />}
-                    placeholder="userame"
-                    iconPosition="left"
-                />
+
+        <div className="flex justify-center items-center h-screen">
+            <div className="h-96 w-96 border border-black flex items-center font-sans bg-blue-500 custom-diagonal-bg">
+                <div className="flex items-center justify-center bg-inherit">
+                    <div className="border border-black rounded-full flex justify-center items-center z-10  h-12 w-12 bg-white">
+                        <UserIcon size="lg" />
+                    </div>
+                    <div className="-ml-4 z-0">
+                        <input className="bg-[#476468] h-9 flex justify-center rounded-r-3xl" placeholder="username" />
+                    </div>
+
+                </div>
             </div>
-
-            <div className="mt-2">
-                <InputBox
-                    bgColor="custom"
-                    icon={<PasswordIcon size="md" />}
-                    placeholder="password"
-                    iconPosition="right"
-                />
-            </div>
-
-
         </div>
+
     )
 }
