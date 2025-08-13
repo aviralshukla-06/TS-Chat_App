@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-// import NavBar from "./components/NavBar"
+import { NavBar } from "./components/NavBar"
 // import { HomePage } from "./pages/HomePage"
 // import SignupPage from "./pages/SignupPage"
 // import SigninPage from "./pages/SigninPage"
@@ -11,20 +11,21 @@ import { InputBox } from "./components/InputBox"
 import { Card } from "./components/Card"
 import { SignupPage } from "./pages/SignupPage"
 import { SigninPage } from "./pages/SigninPage"
+import { HomePage } from "./pages/HomePage"
 
 
 const App = () => {
   return (
     <div>
-      {/* <NavBar/> */}
+      <NavBar />
       {/* <BrowserRouter> */}
 
       <Routes>
-        {/* <Route path="/" element={<SigninPage />} /> */}
+        {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
-        {/* <Route path="/settings" element={<SettingPage />} />
-          <Route path="/profile" element={<ProfilePage />} /> */}
+        {/* <Route path="/settings" element={<SettingPage />} /> */}
+        {/* <Route path="/profile" element={<ProfilePage />} /> */}
       </Routes>
       {/* </BrowserRouter> */}
     </div>
